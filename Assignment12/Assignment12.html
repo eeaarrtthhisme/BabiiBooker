@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
 
+<!-- 
+        DES322 
+        Assignment 12 Vue.js
+        Student ID: 6222780189
+        Name: Hongsapatara Thippayapokin
+        TA Group 4 Titipakorn Prakayapun
+        Digital Business: Babii Booker
+        Created Date: 20/11/2021
+    -->
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,9 +69,9 @@
                             <div class = "col fw bold">
                                 <CartItem v-for="item in cart" :item="item" :key="item.id" />
                             </div>
-                            <div>The Grand Total Price is {{grandtotal}}</div>
                         </div>
-                    </div>
+                    </div></br>
+                    <div class = "row">The grand total is {{grandtotal}}</div>
                 </div>
             </div>
         </div>
@@ -95,7 +105,7 @@
                 <div class = "col">{{item.name}}</div>
                 <div class = "col">Amount x{{item.count}}</div>
                 <div class = "col">Price: {{item.price}}*{{item.count}} = {{item.total}}</div>
-                <div class = "col"><button class="btn btn-primary btn-block">Remove</button></div>
+                <div class="col"><button @click="removeFromCart()" class="btn btn-primary btn-block">Remove</button>
             </div>
         </div>
     </template>
@@ -130,7 +140,7 @@
                         id: 3,
                         name: "The Little Prince",
                         price: 300,
-                        shortdesc: "Elegance built in",
+                        shortdesc: "The literature that can make you deeply feel the meaning of your life.",
                         url: "images/littleprince.jpg"
                     }, {
                         id: 4,
@@ -220,6 +230,13 @@
                         total += this.cart[i].count
                     }
                     return total
+                },
+                grandtotal: function () {
+                    var grandtotal = 0
+                    for (i in this.cart) {
+                        grandtotal += this.cart[i].total
+                    }
+                    return grandtotal
                 }
             }
 
